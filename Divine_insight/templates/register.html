@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <script>
+      function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var confirmPasswordInput = document.getElementById("confirmPassword");
+        var passwordToggle = document.getElementById("passwordToggle");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          confirmPasswordInput.type = "text";
+          passwordToggle.innerText = "Close Eye";
+        } else {
+          passwordInput.type = "password";
+          confirmPasswordInput.type = "password";
+          passwordToggle.innerText = "Open Eye";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Register</h2>
+    {% if error %}
+    <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <form action="/register" method="post">
+      Username: <input type="text" name="username" /><br />
+      Email: <input type="email" name="email" /><br />
+      Password: <input type="password" name="password" id="password" /><br />
+      Confirm Password:
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+      /><br />
+      <button type="button" onclick="togglePassword()" id="passwordToggle">
+        Open Eye</button
+      ><br />
+      <!-- Add more fields as needed -->
+      <input type="submit" value="Register" />
+    </form>
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </body>
+</html>
